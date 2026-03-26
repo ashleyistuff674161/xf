@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows 12</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="desktop">
+    <!-- Desktop icons -->
+    <div class="desktop-icon" onclick="openApp('notepad')"><img src="https://via.placeholder.com/48?text=📝" alt=""><span>Notepad</span></div>
+    <div class="desktop-icon" onclick="openApp('calc')"><img src="https://via.placeholder.com/48?text=🧮" alt=""><span>Calculator</span></div>
+    <div class="desktop-icon" onclick="openApp('explorer')"><img src="https://via.placeholder.com/48?text=📁" alt=""><span>Explorer</span></div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+      <button id="start-btn" onclick="toggleStartMenu()">Start</button>
+      <div id="taskbar-icons">
+        <!-- Pinned apps can be added here -->
+      </div>
+      <div id="system-tray">
+        <span id="clock"></span>
+      </div>
+      <button onclick="showRunDialog()" style="margin-left:auto; margin-right:10px;">Run</button>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="hidden">
+      <div class="start-header">Windows 12</div>
+      <input type="text" id="start-search" placeholder="Search apps or type to run..." onkeypress="if(event.key==='Enter') handleStartSearch()">
+      <div class="start-apps">
+        <div onclick="openApp('notepad')">Notepad</div>
+        <div onclick="openApp('calc')">Calculator</div>
+        <div onclick="openApp('cmd')">Command Prompt</div>
+        <div onclick="openApp('explorer')">File Explorer</div>
+        <div onclick="openApp('paint')">Paint</div>
+      </div>
+    </div>
+
+    <!-- Run Dialog -->
+    <div id="run-dialog" class="hidden modal">
+      <div class="modal-content">
+        <h2>Run</h2>
+        <p>Type the name of a program, folder, document, or Internet resource, and Windows will open it for you.</p>
+        <input type="text" id="run-input" placeholder="notepad.exe, calc, C:\path\to\app.exe" autofocus>
+        <div class="modal-buttons">
+          <button onclick="hideRunDialog()">Cancel</button>
+          <button onclick="executeRunCommand()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
