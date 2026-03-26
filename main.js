@@ -1,8 +1,18 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
+const express = require('express');
 
 let mainWindow;
+const PORT = 3000;
+
+// Start Express server to serve files on port 3000
+const expressApp = express();
+expressApp.use(express.static(path.join(__dirname)));
+
+expressApp.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
 
 function createWindow() {
   mainWindow = new BrowserWindow({
